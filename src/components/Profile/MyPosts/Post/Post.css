@@ -1,0 +1,10 @@
+
+.post{
+    color: #d0d0d0;
+    margin-top: 15px;
+}
+.post__avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}

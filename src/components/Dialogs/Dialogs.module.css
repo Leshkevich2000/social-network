@@ -1,0 +1,36 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 100px 5fr;   
+    /* grid-gap: 20px; */
+}
+.dialogsItems{
+    color: saddlebrown;
+}
+.dialog{
+    border-radius: 10px;
+    color: rgb(169, 164, 164);
+    padding: 3px 20px;
+    border-color: rgb(167, 167, 167);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.dialog:hover{
+    background-color: #333333;
+    color: rgb(221, 233, 233);
+    
+}
+.dialog:active{
+    color: gold;
+}
+.dialog a{
+    text-decoration: none;
+    color: rgb(221, 233, 233);
+}
+.mesagges{
+color:red
+}
+.message{
+    color:hotpink;
+}
