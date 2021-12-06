@@ -2,16 +2,12 @@ import React from "react";
 import './MyPosts.css';
 import Post from './Post/Post'
 
-let postsData = [
-    { message: 'Hi how are you?', counterLikes: 15 },
-    { message: 'it is my first message!', counterLikes: 5 },
-    { message: 'i am learning REACT', counterLikes: 100 },
-]
-let posts = postsData
-    .map(p => <Post message={p.message} counterLikes={p.counterLikes} />)
 
 
-let MyPosts = () => {
+let MyPosts = (props) => {
+    let posts = props.posts.map(p => <Post message={p.message} counterLikes={p.counterLikes} />)
+
+    debugger;
     return (
         <div>
             <div className='my-posts'>

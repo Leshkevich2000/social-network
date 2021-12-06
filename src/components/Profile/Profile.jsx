@@ -3,11 +3,15 @@ import './Profile.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-let Profile = () => {
+
+let Profile = (props) => {
+
+
     return (
+
         <div className='content'>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts posts={props.posts} />
         </div>
     );
 }
