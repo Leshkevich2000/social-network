@@ -17,8 +17,8 @@ let App = (props) => {
                 <Navbar friends={props.state.sitebar} />
                 <div className='content'>
                     <Routes>
-                        <Route path="/profile" element={<Profile state={props.state} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} />
-                        <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogsPage.dialogs} messages={props.state.dialogsPage.messages} />} />
+                        <Route path="/profile" element={<Profile state={props.state} dispatch={props.dispatch} />} />
+                        <Route path="/dialogs/*" element={<Dialogs state={props.state} dispatch={props.dispatch} />} />
 
                         <Route path='/news' element={<News />} />
                         <Route path='/music' element={<Music />} />
