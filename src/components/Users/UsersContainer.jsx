@@ -5,10 +5,10 @@ import { followAC, setUsersAC, unFollowAC } from "../../redux/usersReducer";
 
 
 let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users
-    }
-}
+    return ({
+        'users': state.usersPage.users
+    });
+};
 
 let mapDispatchToProps = (dispatch) => {
     return {
@@ -22,6 +22,6 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(setUsersAC(users));
         }
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

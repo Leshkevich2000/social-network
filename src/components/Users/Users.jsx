@@ -1,41 +1,27 @@
 import React from "react";
-import { unFollowAC } from "../../redux/usersReducer";
-import styles from './styles.module.css'
-
+import styles from './styles.module.css';
+import * as axios from 'axios'
 let Users = (props) => {
-    if (props.users.length == 0) {
-        console.log("000");
-        props.setUsers([
-            {
-                id: 1, photoUrl: 'https://citaty.info/files/characters/32246.jpg',
-                followed: true,
-                name: 'Alex',
-                status: 'I am a BOSS!',
-                location: { city: 'Minsk', country: 'Belarus' }
-            },
-            {
-                id: 2, photoUrl: 'https://icdn.lenta.ru/images/2021/06/25/18/20210625185420818/square_320_793279a1f6e1ac09c096977444165467.jpg',
-                followed: false,
-                name: 'Fedor',
-                status: 'I am a BOSS!',
-                location: { city: 'Moscow', country: 'Russia' }
-            },
-            {
-                id: 3, photoUrl: 'https://resizer.mail.ru/p/7a1e86df-9686-5098-963e-27304c6f1133/AAACY37OntEVxnf9OOUuLkcQpyEwVtb3AZgK14eU9OI6IljiYtBizDmEp-vG8UfPC3h-OB130PE-ba1mk1rY6S-3Zek.jpg',
-                followed: true,
-                name: 'Vladimir',
-                status: 'I am a BOSS!',
-                location: { city: 'Kiev', country: 'Ukaine' }
-            },
-        ])
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                debugger;
+                props.setUsers(response.data.items);
+            });
+        }
     }
+    debugger;
     return (
         <div>
+            <button onClick={getUsers}>Get Uesrs</button>
             {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} className={styles.userPhoto}></img>
+                            <br></br>
+                            <br></br>
+                            <img src={u.photos.small != null ? u.photos.small : window.location.origin + '/images/userPhoto.jpg'} className={styles.userPhoto}></img>
+
                         </div>
                         <div>
                             {u.followed
@@ -55,10 +41,10 @@ let Users = (props) => {
                         </span>
                         <span>
                             <div>
-                                {u.location.city}
+                                {u.location ? u.location.city : ' город не указан'}
                             </div>
                             <div>
-                                {u.location.country}
+                                {u.location ? u.location.country : ' страна не указана'}
                             </div></span>
                     </span>
                 </div>)
