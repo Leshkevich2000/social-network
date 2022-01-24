@@ -4,7 +4,20 @@
     grid-area: h;
     background-color: #444444;
     margin-bottom: 0px;
+    font-size: 24px;
+    color: #999999;
 }
 .header__img{
     width: 80px;
+}
+
+.loginBlock{
+    size: 20px;
+    text-align: center;
+    float: right;
+}
+.loginBlock a{
+    width:80px;
+    color: green;
+    font-size: 30px;
 }
