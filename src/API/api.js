@@ -1,11 +1,10 @@
 import * as axios from "axios";
-import React from "react";
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     headers: {
-        "API-KEY": "51df671f-93be-4a46-81ae-5533d6b568ad"
+        "API-KEY": "4fbd42d6-223b-4526-964d-29d54adb14a3"
     }
 });
 
@@ -14,12 +13,20 @@ export const getUsers = (currentPage = 1, pageSize = 10) => {
         .then(response => {
             return (response.data);
         });
-}
+};
 
-
-export const updateUsers = (pageNumber = 1, pageSize = 10) => {
-    return instance.get(`users?page=${pageNumber}&count=${pageSize}`)
+export const follow = (userId) => {
+    return instance.post(`follow/${userId}`)
         .then(response => {
             return (response.data);
-        });
-}
+        })
+};
+
+
+export const unFollow = (userId) => {
+    return instance.delete(`follow/${userId}`)
+        .then(response => {
+            return (response.data);
+        })
+};
+
