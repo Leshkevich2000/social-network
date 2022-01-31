@@ -5,9 +5,17 @@ import Message from './Message/Message';
 import Dialogs from './Dialogs';
 import { addMessageAC, updateNewMessageTextAC } from '../../redux/dialogsReducer';
 import { connect } from 'react-redux';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
 
 
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+// let AuthRedirectComponent = (props) => {
+//     if (!props.isAuth) return <Navigate to='/login' />
+//     return <Dialogs{...props} />
+// }
 
 let mapStateToProps = (state) => {
     let dialogs = state.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
@@ -15,20 +23,12 @@ let mapStateToProps = (state) => {
     return ({
         'dialogs': dialogs,
         'messages': messages,
-        'body': state.dialogsPage.newMessageText
+        'body': state.dialogsPage.newMessageText,
+        'isAuth': state.auth.isAuth
     });
 };
-// let mapDispatchToProps = (dispatch) => {
-//     return ({
-//         addMessage: () => {
-//             dispatch(addMessageActionCreator());
-//         },
-//         updateNewMessageText: (body) => {
-//             dispatch(updateNewMessageTextCreator(body));
 
-//         }
-//     });
-// };
-const DialogsContainer = connect(mapStateToProps, { addMessage: addMessageAC, updateNewMessageText: updateNewMessageTextAC })(Dialogs);
+const DialogsContainer = connect(mapStateToProps, { addMessage: addMessageAC, updateNewMessageText: updateNewMessageTextAC })(AuthRedirectComponent);
 
 export default DialogsContainer;
+

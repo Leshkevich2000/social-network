@@ -15,7 +15,7 @@ export const getUsers = (currentPage = 1, pageSize = 10) => {
         });
 };
 
-export const follow = (userId) => {
+export const followUser = (userId) => {
     return instance.post(`follow/${userId}`)
         .then(response => {
             return (response.data);
@@ -23,10 +23,18 @@ export const follow = (userId) => {
 };
 
 
-export const unFollow = (userId) => {
+export const unFollowUser = (userId) => {
     return instance.delete(`follow/${userId}`)
         .then(response => {
             return (response.data);
         })
 };
 
+export const getProfile = (userId) => {
+    return instance.get(`profile/` + userId)
+};
+
+export const authMe = () => {
+    return instance.get(`auth/me`)
+
+};

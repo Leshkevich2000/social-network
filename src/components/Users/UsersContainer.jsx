@@ -1,10 +1,9 @@
 import React from "react";
 import Users from './Users'
-import * as axios from 'axios';
 import { connect } from "react-redux";
-import { follow, setUsers, unFollow, setCurrentPage, setUsersTotalCount, toggleIsFetching, getUsersTC, toggleIsFollowingProgress } from "../../redux/usersReducer";
+import { follow, unFollow, setCurrentPage, toggleIsFetching, getUsersTC, followTC, toggleIsFollowingProgress, unFollowTC } from "../../redux/usersReducer";
 import Preloader from "../Preloader/Preloader";
-import { getUsers } from "../../API/api";
+
 
 class UsersContainer extends React.Component {
     componentDidMount() {
@@ -32,6 +31,8 @@ class UsersContainer extends React.Component {
                 unFollow={this.props.unFollow}
                 followingInProgress={this.props.followingInProgress}
                 toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                followTC={this.props.followTC}
+                unFollowTC={this.props.unFollowTC}
             />
         </>
     };
@@ -56,5 +57,7 @@ export default connect(mapStateToProps, {
     toggleIsFetching,
     toggleIsFollowingProgress,
     setCurrentPage: setCurrentPage,
-    getUsersTC: getUsersTC
+    getUsersTC: getUsersTC,
+    followTC,
+    unFollowTC
 })(UsersContainer);

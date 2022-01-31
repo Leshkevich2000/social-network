@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { follow, unFollow } from "../../API/api";
 import styles from './styles.module.css';
-import * as axios from "axios";
 
 let Users = (props) => {
 
@@ -33,25 +32,26 @@ let Users = (props) => {
                     <div>
                         {u.followed
                             ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, u.id);
-                                unFollow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.unFollow(u.id);
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id);
-                                    });
-
+                                // props.toggleIsFollowingProgress(true, u.id);
+                                // unFollowUser(u.id)
+                                //     .then(data => {
+                                //         if (data.resultCode == 0) {
+                                //             props.unFollow(u.id);
+                                //         }
+                                //         props.toggleIsFollowingProgress(false, u.id);
+                                //     });
+                                props.unFollowTC(u.id);
                             }}>unFOLLOW</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                props.toggleIsFollowingProgress(true, u.id);
-                                follow(u.id)
-                                    .then(data => {
-                                        if (data.resultCode == 0) {
-                                            props.follow(u.id);
-                                        }
-                                        props.toggleIsFollowingProgress(false, u.id);
-                                    });
+                                props.followTC(u.id);
+                                // props.toggleIsFollowingProgress(true, u.id);
+                                // follow(u.id)
+                                //     .then(data => {
+                                //         if (data.resultCode == 0) {
+                                //             props.follow(u.id);
+                                //         }
+                                //         props.toggleIsFollowingProgress(false, u.id);
+                                //     });
 
                             }}>FOLLOW</button>}
                     </div>
