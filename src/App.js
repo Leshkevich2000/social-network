@@ -10,13 +10,14 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/login/login';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 
 
 let App = (props) => {
     return (
         <div className='app-wrapper'>
             <HeaderContainer />
-            <Navbar />
+            <NavbarContainer />
             <div className='content'>
                 <Routes>
                     <Route path="/profile/:userId" element={<ProfileContainer />} />

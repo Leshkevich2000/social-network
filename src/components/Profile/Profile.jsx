@@ -11,7 +11,7 @@ let Profile = (props) => {
     return (
 
         <div className='content'>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} status={props.status} updateProfileStatus={props.updateProfileStatus} />
             <MyPostsContainer />
 
         </div>

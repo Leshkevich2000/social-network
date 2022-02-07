@@ -1,26 +1,28 @@
 import React from "react";
 import './Profile.css';
 import Profile from "./Profile";
-import * as axios from "axios"
 import { connect } from "react-redux";
-import { getUserProfileTC, setUsersProfile } from "../../redux/profileReducer";
+import { getUserProfileTC, setUsersProfile, getProfileStatusTC, updateProfileStatusTC } from "../../redux/profileReducer";
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 // import { withRouter } from "react-router-dom"; до версии v6
 import { Navigate, useMatch } from "react-router-dom"; //вместо withRoter
-import Dialogs from "../Dialogs/Dialogs";
+
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = 21492;
         }
-        this.props.getUserProfileTC(userId);
+
+        this.props.getUserProfile(userId);
+        this.props.getProfileStatus(userId);
     }
 
     render() {
         return (
             <div className='content' >
-                <Profile {...this.profile} profile={this.props.profile} />
+                <Profile {...this.profile} profile={this.props.profile} status={this.props.status}
+                    updateProfileStatus={this.props.updateProfileStatus} />
             </div>
         );
     }
@@ -31,7 +33,7 @@ let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    status: state.profilePage.status,
 });
 
 
@@ -46,6 +48,8 @@ const ProfileMatch = (props) => {
 export default connect(mapStateToProps,
     {
         setUsersProfile: setUsersProfile,
-        getUserProfileTC: getUserProfileTC
+        getUserProfile: getUserProfileTC,
+        getProfileStatus: getProfileStatusTC,
+        updateProfileStatus: updateProfileStatusTC
     })(ProfileMatch);
 

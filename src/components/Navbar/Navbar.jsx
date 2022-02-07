@@ -4,11 +4,10 @@ import './Navbar.css';
 import Friend from "./Friends/Friend";
 
 let Navbar = (props) => {
-
     return (
         <nav className='nav'>
             <div className='nav__item'>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to={'/profile/' + props.userId}>Profile</NavLink>
             </div>
             <div className='nav__item'>
                 <NavLink to="/dialogs">  Massages </NavLink>
