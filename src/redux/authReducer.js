@@ -1,4 +1,4 @@
-import { authMe } from "../API/api";
+import { authMe, login, logout } from "../API/api";
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -17,14 +17,14 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true,
+
             }
         }
         default: return state;
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } });
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, data: { userId, email, login, isAuth } });
 
 export const authMeTC = () => {
     return (dispatch) => {
@@ -33,8 +33,27 @@ export const authMeTC = () => {
                 let userId = res.data.data.id;
                 let email = res.data.data.email;
                 let login = res.data.data.login;
-                dispatch(setAuthUserData(userId, email, login));
+                dispatch(setAuthUserData(userId, email, login, true));
 
+            }
+        });
+    }
+}
+
+export const userLogin = (email, password, rememberMe) => {
+    return (dispatch) => {
+        login(email, password, rememberMe).then(res => {
+            if (res.resultCode === 0) {
+                dispatch(authMeTC());
+            }
+        });
+    }
+}
+export const userLogout = () => {
+    return (dispatch) => {
+        logout().then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
             }
         });
     }

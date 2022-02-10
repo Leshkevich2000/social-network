@@ -9,8 +9,8 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/login/login';
 import NavbarContainer from './components/Navbar/NavbarContainer';
+import LoginContainer from './components/login/LoginContainer';
 
 
 let App = (props) => {
@@ -27,7 +27,7 @@ let App = (props) => {
                     <Route path='/music' element={<Music />} />
                     <Route path='/settings' element={<Settings />} />
                     <Route path='/users' element={<UsersContainer />} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/login' element={<LoginContainer />} />
 
                 </Routes>
             </div>

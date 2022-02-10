@@ -1,21 +1,31 @@
 
 import React from 'react';
 import style from './Dialogs.module.css'
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
+import { Field, reduxForm } from 'redux-form';
+import { TextArea } from '../common/FormControls/FormControls';
+import { maxLengthCreater, required } from '../../utils/validators/validators';
+let maxLength50 = maxLengthCreater(50);
+const FormMessage = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name="newMessageText" component={TextArea} validate={[required, maxLength50]} />
+            </div>
+            <div>
+                <button >Send message</button>
+            </div>
+        </form>
+    );
+};
 
+const NewFormMessage = reduxForm({
+    form: 'newMessage'
+})(FormMessage);
 
 const Dialogs = (props) => {
 
-
-    let onAddMessage = () => {
-        props.addMessage();
-    }
-
-    let onMessageChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageText(body);
-
+    let onAddMessage = (value) => {
+        props.addMessage(value.newMessageText);
     }
 
     return (
@@ -27,12 +37,7 @@ const Dialogs = (props) => {
                 {props.messages}
 
                 <div className='new-post'>
-                    <div>
-                        <textarea onChange={onMessageChange} value={props.body}></textarea>
-                    </div>
-                    <div>
-                        <button onClick={onAddMessage} >Send message</button>
-                    </div>
+                    <NewFormMessage onSubmit={onAddMessage} />
                 </div>
             </div>
         </div>

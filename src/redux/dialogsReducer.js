@@ -15,7 +15,6 @@ let initialState = {
         { id: 3, message: 'I work in IT-company' },
         { id: 4, message: 'I learn React' },
     ],
-    newMessageText: ''
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -24,33 +23,22 @@ const dialogsReducer = (state = initialState, action) => {
             console.log("Send message");
             let newMessage = {
                 id: 6,
-                message: state.newMessageText
+                message: action.newMessageText
             }
             let copyState = Object.assign({}, state);
             console.log(copyState);
             console.log(state);
             copyState.messages.push(newMessage);
-            copyState.newMessageText = '';
-            return copyState;
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            let copyState = Object.assign({}, state);
-            copyState.newMessageText = action.newText;
             return copyState;
         }
         default: return state;
     }
 }
 
-export const addMessageAC = () => ({
-    type: SEND_MESSAGE
+export const addMessageAC = (newMessageText) => ({
+    type: SEND_MESSAGE,
+    newMessageText
 });
 
-export const updateNewMessageTextAC = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: text
-    }
-}
 
 export default dialogsReducer;

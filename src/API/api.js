@@ -46,3 +46,14 @@ export const authMe = () => {
     return instance.get(`auth/me`);
 
 };
+export const login = (email, password, rememberMe = false) => {
+    return instance.post(`/auth/login`, { email, password, rememberMe })
+        .then(response => {
+            return (response.data);
+        })
+};
+
+export const logout = (email, password, rememberMe = false) => {
+    return instance.delete(`/auth/login`);
+
+};

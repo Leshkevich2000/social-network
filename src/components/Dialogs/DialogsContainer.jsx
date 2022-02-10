@@ -23,7 +23,7 @@ let mapStateToProps = (state) => {
     });
 };
 
-export default compose(connect(mapStateToProps, { addMessage: addMessageAC, updateNewMessageText: updateNewMessageTextAC }),
+export default compose(connect(mapStateToProps, { addMessage: addMessageAC }),
     withAuthRedirect
 )(Dialogs);
 

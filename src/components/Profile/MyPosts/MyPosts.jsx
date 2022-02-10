@@ -1,37 +1,44 @@
 import React from "react";
-import { addPostActionCreator, updateNewPostTextCreator } from "../../../redux/profileReducer";
 import './MyPosts.css';
-import Post from './Post/Post'
+import Post from './Post/Post';
+import { Field, reduxForm } from 'redux-form';
+import { maxLengthCreater, required } from "../../../utils/validators/validators";
+import { TextArea } from "../../common/FormControls/FormControls";
+
+let maxLength10 = maxLengthCreater(10);
+const PostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name="newPostText" component={TextArea} validate={[required, maxLength10]} placeholder={'write a post'} />
+            </div>
+            <div>
+                <button >Add Post</button>
+            </div>
+        </form>
+    );
+};
+const NewPostForm = reduxForm({
+    form: 'ProfileAddNewPost'
+})(PostForm);
 
 
 
-let MyPosts = (props) => {
-
-    let posts = props.posts.map(p => <Post message={p.message} counterLikes={p.counterLikes} />)
-
-
-    let newPostElement = React.createRef();
-
-    let onAddPost = () => {
-        props.addPost();
-    }
-
-    let onPostChange = (e) => {
-        let text = e.target.value;
-        props.updateNewPostText(text);
-    }
+const MyPosts = (props) => {
+    let onAddPost = (value) => {
+        props.addPost(value.newPostText);
+    };
 
     return (
         <div>
             <div className='my-posts'>
                 <h3>    My posts </h3>
                 <div className='new-post'>
-                    <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
-                    <div>
-                        <button onClick={onAddPost} >Add Post</button>
-                    </div>
+                    <NewPostForm onSubmit={onAddPost} />
                 </div>
-                {posts}
+                <div>
+                    {props.posts}
+                </div>
             </div>
         </div>
     );

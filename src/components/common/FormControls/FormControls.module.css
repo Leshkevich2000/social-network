@@ -1,0 +1,11 @@
+
+.formContol.error input{
+    border: solid red 2px;
+}
+.formContol.error textarea{
+    border: solid red 2px;
+}
+
+.formContol.error span{
+    color: rgb(251, 67, 67);
+}
