@@ -10,10 +10,6 @@ import { Navigate, useMatch } from "react-router-dom"; //вместо withRoter
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = 21492;
-        }
-
         this.props.getUserProfile(userId);
         this.props.getProfileStatus(userId);
     }

@@ -12,7 +12,6 @@ const FormControl = ({ input, meta, Formtype, ...props }) => {
             </div>
             {hasError && <span> {meta.error}</span>}
         </div>
-
     );
 }
 

@@ -8,7 +8,7 @@ import { Navigate } from 'react-router-dom'
 let maxLength20 = maxLengthCreater(20);
 const LoginForm = (props) => {
     return (
-        <form className="LoginForm" onSubmit={props.handleSubmit}>
+        <form className="loginForm" onSubmit={props.handleSubmit}>
             <div>
                 <Field name="email" type="email" placeholder={"Login"} component={Input} validate={[required, maxLength20]} />
             </div>
@@ -17,6 +17,9 @@ const LoginForm = (props) => {
             </div>
             <div>
                 <Field name="rememberMe" type={'checkbox'} component={Input} /> <span>remember me</span>
+            </div>
+            <div className="formSummaryError">
+                {props.error}
             </div>
             <div>
                 <button> Login</button>
