@@ -19,7 +19,7 @@ class UsersContainer extends React.Component {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-
+        console.log("render");
         return <>
             {this.props.isFetching ?
                 <Preloader /> : null}
@@ -41,6 +41,7 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    console.log("mapStateToProps");
     return ({
         'users': getUsers(state),
         'pageSize': getPageSize(state),

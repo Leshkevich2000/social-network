@@ -7,6 +7,10 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 
+setInterval(() => {
+    //console.log('dispatch');
+    store.dispatch({ type: "FAKE" })
+}, 1000);
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
