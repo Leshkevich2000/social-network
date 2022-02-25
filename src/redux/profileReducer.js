@@ -88,7 +88,7 @@ export const updateProfileStatusTC = (status) => {
     return (dispatche) => {
         updateProfileStatus(status)
             .then(response => {
-                if (response.data.resaultCode === 0) {
+                if (response.data.resultCode === 0) {
                     dispatche(setProfileStatusAC(status));
                 }
             });
